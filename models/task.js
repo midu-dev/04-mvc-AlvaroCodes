@@ -14,29 +14,40 @@ let currentId = 1
  * Model class representing a task.
  * @class
  */
-
-/**
- * export class TaskModel {
- *
- *
+export class TaskModel {
   /**
    * Fetches all tasks.
    * @name TaskModel.getAllTasks
    * @static
    * @returns {Array<Object>} Array of tasks.
    */
+  static async getAllTasks () {
+    return tasks
+  }
 
-/**
+  /**
    * Adds a new task to the list.
    * @name TaskModel.addTask
    * @static
    * @param {string} description - The description of the task.
    * @returns {Object} The new task object.
    */
+  static async addTask ({ description } = {}) {
+    if (description) {
+      description.id = currentId
+      currentId++
+    }
+    tasks.push(description)
+    return description
+  }
 
-/**
+  /**
    * Deletes a task from the list by its ID.
    * @name TaskModel.deleteTask
    * @static
    * @param {number} id - The ID of the task to delete.
    */
+  static async deleteTask ({ id } = '') {
+    return tasks.filter(({ idTask }) => idTask === id)
+  }
+}
