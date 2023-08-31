@@ -1,5 +1,5 @@
 // importar modelo
-import { TaskModel } from '../models/task'
+import { TaskModel } from '../models/task.js'
 
 export const getAllTasks = (req, res) => {
   const tasks = TaskModel.getAllTasks()
