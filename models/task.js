@@ -2,7 +2,7 @@
  * Array to store tasks.
  * @type {Array<Object>}
  */
-const tasks = []
+let tasks = []
 
 /**
  * ID for the next task. Increments each time a new task is added.
@@ -32,13 +32,21 @@ export class TaskModel {
    * @param {string} description - The description of the task.
    * @returns {Object} The new task object.
    */
-  static async addTask ({ description } = {}) {
-    if (description) {
-      description.id = currentId
-      currentId++
+  static async addTask (description = '') {
+    if (!description) {
+      return {}
     }
-    tasks.push(description)
-    return description
+
+    const task = {
+      id: currentId,
+      description
+    }
+
+    currentId++
+
+    tasks.push(task)
+
+    return task
   }
 
   /**
@@ -47,7 +55,9 @@ export class TaskModel {
    * @static
    * @param {number} id - The ID of the task to delete.
    */
-  static async deleteTask ({ id } = '') {
-    return tasks.filter(({ idTask }) => idTask === id)
+  static async deleteTask (id = 0) {
+    const removeTask = tasks.filter((task) => task.id !== Number(id))
+    tasks = removeTask
+    return tasks
   }
 }
