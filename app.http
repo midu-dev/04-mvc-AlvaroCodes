@@ -1,0 +1,13 @@
+### Add Task
+POST http://localhost:1234/tasks 
+Content-Type: application/json
+
+{
+    "description": "Test task" 
+}
+
+### Get Task
+GET http://localhost:1234/tasks 
+
+### Delete TaskPOST 
+DELETE http://localhost:1234/tasks/1
